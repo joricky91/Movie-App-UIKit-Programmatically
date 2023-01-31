@@ -12,6 +12,7 @@
 		51F3DA7F2987B25700A72273 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3DA7E2987B25700A72273 /* ViewController.swift */; };
 		51F3DA842987B25900A72273 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51F3DA832987B25900A72273 /* Assets.xcassets */; };
 		51F3DA872987B25900A72273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51F3DA852987B25900A72273 /* LaunchScreen.storyboard */; };
+		51F3DA8F2988A96000A72273 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3DA8E2988A96000A72273 /* CustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		51F3DA832987B25900A72273 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51F3DA862987B25900A72273 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		51F3DA882987B25900A72273 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51F3DA8E2988A96000A72273 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				51F3DA832987B25900A72273 /* Assets.xcassets */,
 				51F3DA852987B25900A72273 /* LaunchScreen.storyboard */,
 				51F3DA882987B25900A72273 /* Info.plist */,
+				51F3DA8E2988A96000A72273 /* CustomCell.swift */,
 			);
 			path = "Movie App UIKit Programmatically";
 			sourceTree = "<group>";
@@ -136,6 +139,7 @@
 			files = (
 				51F3DA7F2987B25700A72273 /* ViewController.swift in Sources */,
 				51F3DA7B2987B25700A72273 /* AppDelegate.swift in Sources */,
+				51F3DA8F2988A96000A72273 /* CustomCell.swift in Sources */,
 				51F3DA7D2987B25700A72273 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
