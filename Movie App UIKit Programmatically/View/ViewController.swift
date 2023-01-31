@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         setupViews()
         setupConstraints()
         vm.getNowPlayingMovie()
+        vm.getUpcomingMovie()
         bindVM()
         title = "Movie"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -29,11 +30,11 @@ class ViewController: UIViewController {
         vm.$nowPlaying.sink { [weak self] _ in
             self?.collectionView1.reloadData()
         }.store(in: &cancellables)
+        
+        vm.$upcoming.sink { [weak self] _ in
+            self?.collectionView2.reloadData()
+        }.store(in: &cancellables)
     }
-    
-//    private func fetchData() {
-//        vm.getNowPlayingMovie()
-//    }
     
     lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
@@ -159,7 +160,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         if collectionView == collectionView1 {
             return vm.nowPlaying.count
         } else if collectionView == collectionView2 {
-            return 10
+            return vm.upcoming.count
         } else {
             return 10
         }
@@ -178,6 +179,13 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
             return cell1
         } else if collectionView == collectionView2 {
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! CustomCell
+            let data: Movie
+            data = vm.upcoming[indexPath.row]
+            let stringURL = "https://image.tmdb.org/t/p/w1280/\(data.poster ?? "")"
+            if let url = URL(string: stringURL) {
+                cell2.moviePoster.downloadImage(from: url)
+            }
+            cell2.movieTitle.text = data.title
             return cell2
         } else {
             let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! CustomCell
