@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         setupConstraints()
         vm.getNowPlayingMovie()
         vm.getUpcomingMovie()
+        vm.getTopRatedMovie()
         bindVM()
         title = "Movie"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -33,6 +34,10 @@ class ViewController: UIViewController {
         
         vm.$upcoming.sink { [weak self] _ in
             self?.collectionView2.reloadData()
+        }.store(in: &cancellables)
+        
+        vm.$topRated.sink { [weak self] _ in
+            self?.collectionView3.reloadData()
         }.store(in: &cancellables)
     }
     
@@ -128,7 +133,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         } else if collectionView == collectionView2 {
             return vm.upcoming.count
         } else {
-            return 10
+            return vm.topRated.count
         }
     }
     
@@ -155,6 +160,13 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
             return cell2
         } else {
             let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! CustomCell
+            let data: Movie
+            data = vm.topRated[indexPath.row]
+            let stringURL = "https://image.tmdb.org/t/p/w1280/\(data.poster ?? "")"
+            if let url = URL(string: stringURL) {
+                cell3.moviePoster.downloadImage(from: url)
+            }
+            cell3.movieTitle.text = data.title
             return cell3
         }
     }

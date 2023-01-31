@@ -11,10 +11,12 @@ import Combine
 class MovieViewModel: ObservableObject {
     @Published var nowPlaying: [Movie] = []
     @Published var upcoming: [Movie] = []
+    @Published var topRated: [Movie] = []
     
     private var network = NetworkManager()
     private var nowPlayingURL = "https://api.themoviedb.org/3/movie/now_playing?api_key=dd961bfa9a816030820499683fe54a36"
     private var upcomingURL = "https://api.themoviedb.org/3/movie/upcoming?api_key=dd961bfa9a816030820499683fe54a36"
+    var topRatedURL = "https://api.themoviedb.org/3/movie/top_rated?api_key=dd961bfa9a816030820499683fe54a36"
     
     func getNowPlayingMovie() {
         network.fetchMovieDataFromAPI(url: nowPlayingURL, expecting: MovieResponse.self) { [weak self] result in
@@ -37,6 +39,19 @@ class MovieViewModel: ObservableObject {
             case .success(let movie):
                 DispatchQueue.main.async {
                     self?.upcoming = movie.results
+                }
+            }
+        }
+    }
+    
+    func getTopRatedMovie() {
+        network.fetchMovieDataFromAPI(url: topRatedURL, expecting: MovieResponse.self) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let movie):
+                DispatchQueue.main.async {
+                    self?.topRated = movie.results
                 }
             }
         }
