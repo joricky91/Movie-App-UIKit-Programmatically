@@ -46,7 +46,7 @@ class CustomCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             moviePoster.topAnchor.constraint(equalTo: contentView.topAnchor),
             moviePoster.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            moviePoster.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1),
+            moviePoster.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.95),
             moviePoster.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1.3),
             
             movieTitle.topAnchor.constraint(equalTo: moviePoster.bottomAnchor, constant: 3),
