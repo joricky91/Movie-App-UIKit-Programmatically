@@ -58,13 +58,21 @@
 			children = (
 				51F3DA7A2987B25700A72273 /* AppDelegate.swift */,
 				51F3DA7C2987B25700A72273 /* SceneDelegate.swift */,
-				51F3DA7E2987B25700A72273 /* ViewController.swift */,
+				51F3DA902988C91200A72273 /* View */,
 				51F3DA832987B25900A72273 /* Assets.xcassets */,
 				51F3DA852987B25900A72273 /* LaunchScreen.storyboard */,
 				51F3DA882987B25900A72273 /* Info.plist */,
-				51F3DA8E2988A96000A72273 /* CustomCell.swift */,
 			);
 			path = "Movie App UIKit Programmatically";
+			sourceTree = "<group>";
+		};
+		51F3DA902988C91200A72273 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				51F3DA7E2987B25700A72273 /* ViewController.swift */,
+				51F3DA8E2988A96000A72273 /* CustomCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
