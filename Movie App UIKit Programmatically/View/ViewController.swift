@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 class ViewController: UIViewController {
+    
+    let vm = MovieViewModel()
+    private var cancellables: Set<AnyCancellable> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,9 +19,21 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         setupViews()
         setupConstraints()
+        vm.getNowPlayingMovie()
+        bindVM()
         title = "Movie"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
+    private func bindVM() {
+        vm.$nowPlaying.sink { [weak self] _ in
+            self?.collectionView1.reloadData()
+        }.store(in: &cancellables)
+    }
+    
+//    private func fetchData() {
+//        vm.getNowPlayingMovie()
+//    }
     
     lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
@@ -141,7 +157,7 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectionView1 {
-            return 10
+            return vm.nowPlaying.count
         } else if collectionView == collectionView2 {
             return 10
         } else {
@@ -152,6 +168,13 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == collectionView1 {
             let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCell
+            let data: Movie
+            data = vm.nowPlaying[indexPath.row]
+            let stringURL = "https://image.tmdb.org/t/p/w1280/\(data.poster ?? "")"
+            if let url = URL(string: stringURL) {
+                cell1.moviePoster.downloadImage(from: url)
+            }
+            cell1.movieTitle.text = data.title
             return cell1
         } else if collectionView == collectionView2 {
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! CustomCell

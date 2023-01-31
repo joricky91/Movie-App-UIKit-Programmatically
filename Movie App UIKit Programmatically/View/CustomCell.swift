@@ -8,6 +8,7 @@
 import UIKit
 
 class CustomCell: UICollectionViewCell {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -21,7 +22,6 @@ class CustomCell: UICollectionViewCell {
     
     lazy var moviePoster: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "your_name")
         image.layer.masksToBounds = true
         image.layer.cornerRadius = 7
         image.contentMode = .scaleToFill
@@ -55,3 +55,4 @@ class CustomCell: UICollectionViewCell {
         ])
     }
 }
+
