@@ -50,29 +50,17 @@ class ViewController: UIViewController {
         return view
     }()
     
-    lazy var titleLabel: UILabel = {
+    func label(text: String) -> UILabel {
         let label = UILabel()
-        label.text = "Now Playing"
+        label.text = text
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    }()
+    }
     
-    lazy var titleLabel2: UILabel = {
-        let label = UILabel()
-        label.text = "Upcoming"
-        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    lazy var titleLabel3: UILabel = {
-        let label = UILabel()
-        label.text = "Top Rated"
-        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    lazy var nowPlayingLabel = label(text: "Now Playing")
+    lazy var upcomingLabel = label(text: "Upcoming")
+    lazy var topRatedLabel = label(text: "Top Rated")
 
     lazy var collectionView1: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -116,11 +104,11 @@ class ViewController: UIViewController {
     func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addArrangedSubview(titleLabel)
+        contentView.addArrangedSubview(nowPlayingLabel)
         contentView.addArrangedSubview(collectionView1)
-        contentView.addArrangedSubview(titleLabel2)
+        contentView.addArrangedSubview(upcomingLabel)
         contentView.addArrangedSubview(collectionView2)
-        contentView.addArrangedSubview(titleLabel3)
+        contentView.addArrangedSubview(topRatedLabel)
         contentView.addArrangedSubview(collectionView3)
     }
     
@@ -139,15 +127,15 @@ class ViewController: UIViewController {
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            nowPlayingLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             
-            collectionView1.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            collectionView1.topAnchor.constraint(equalTo: nowPlayingLabel.bottomAnchor),
             collectionView1.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.65),
             
-            collectionView2.topAnchor.constraint(equalTo: titleLabel2.bottomAnchor),
+            collectionView2.topAnchor.constraint(equalTo: upcomingLabel.bottomAnchor),
             collectionView2.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.65),
             
-            collectionView3.topAnchor.constraint(equalTo: titleLabel3.bottomAnchor),
+            collectionView3.topAnchor.constraint(equalTo: topRatedLabel.bottomAnchor),
             collectionView3.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.65),
         ])
     }
