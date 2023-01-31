@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         return view
     }()
     
-    func label(text: String) -> UILabel {
+    func reusableTitleLabel(text: String) -> UILabel {
         let label = UILabel()
         label.text = text
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
@@ -58,48 +58,26 @@ class ViewController: UIViewController {
         return label
     }
     
-    lazy var nowPlayingLabel = label(text: "Now Playing")
-    lazy var upcomingLabel = label(text: "Upcoming")
-    lazy var topRatedLabel = label(text: "Top Rated")
-
-    lazy var collectionView1: UICollectionView = {
+    func reusableCollectionView(identifier: String) -> UICollectionView {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 150, height: 220)
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsHorizontalScrollIndicator = false
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.register(CustomCell.self, forCellWithReuseIdentifier: "cell")
+        cv.register(CustomCell.self, forCellWithReuseIdentifier: identifier)
         cv.dataSource = self
         cv.delegate = self
         return cv
-    }()
+    }
     
-    lazy var collectionView2: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 150, height: 220)
-        layout.scrollDirection = .horizontal
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.showsHorizontalScrollIndicator = false
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.register(CustomCell.self, forCellWithReuseIdentifier: "cell2")
-        cv.dataSource = self
-        cv.delegate = self
-        return cv
-    }()
+    lazy var nowPlayingLabel = reusableTitleLabel(text: "Now Playing")
+    lazy var upcomingLabel = reusableTitleLabel(text: "Upcoming")
+    lazy var topRatedLabel = reusableTitleLabel(text: "Top Rated")
     
-    lazy var collectionView3: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 150, height: 220)
-        layout.scrollDirection = .horizontal
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.showsHorizontalScrollIndicator = false
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.register(CustomCell.self, forCellWithReuseIdentifier: "cell3")
-        cv.dataSource = self
-        cv.delegate = self
-        return cv
-    }()
+    lazy var collectionView1 = reusableCollectionView(identifier: "cell")
+    lazy var collectionView2 = reusableCollectionView(identifier: "cell2")
+    lazy var collectionView3 = reusableCollectionView(identifier: "cell3")
     
     func setupViews() {
         view.addSubview(scrollView)
