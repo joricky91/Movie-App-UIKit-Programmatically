@@ -130,17 +130,6 @@ class MovieDetailsViewController: UIViewController {
         let safeArea = view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
-//            scrollView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-//            scrollView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-//            scrollView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-//            scrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-//
-//            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-//            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-//            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-//            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-//            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            
             movieTitle.topAnchor.constraint(equalTo: safeArea.topAnchor),
             movieTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             
@@ -187,5 +176,8 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let url = URL(string: "https://www.youtube.com/watch?v=\(vm.videos[indexPath.row].key)")
+        guard let unwrappedURL = url else { return }
+        UIApplication.shared.open(unwrappedURL)
     }
 }

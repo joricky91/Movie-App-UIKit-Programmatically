@@ -13,6 +13,13 @@ class ViewController: UIViewController {
     let vm = MovieViewModel()
     private var cancellables: Set<AnyCancellable> = []
     
+    lazy var text: UITextView = {
+        let text = UITextView()
+        text.text = "Hello"
+        text.translatesAutoresizingMaskIntoConstraints = false
+        return text
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -29,15 +36,21 @@ class ViewController: UIViewController {
     
     private func bindVM() {
         vm.$nowPlaying.sink { [weak self] _ in
-            self?.collectionView1.reloadData()
+            DispatchQueue.main.async {
+                self?.collectionView1.reloadData()
+            }
         }.store(in: &cancellables)
         
         vm.$upcoming.sink { [weak self] _ in
-            self?.collectionView2.reloadData()
+            DispatchQueue.main.async {
+                self?.collectionView2.reloadData()
+            }
         }.store(in: &cancellables)
         
         vm.$topRated.sink { [weak self] _ in
-            self?.collectionView3.reloadData()
+            DispatchQueue.main.async {
+                self?.collectionView3.reloadData()
+            }
         }.store(in: &cancellables)
     }
     
@@ -87,6 +100,7 @@ class ViewController: UIViewController {
     func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        contentView.addArrangedSubview(text)
         contentView.addArrangedSubview(nowPlayingLabel)
         contentView.addArrangedSubview(collectionView1)
         contentView.addArrangedSubview(upcomingLabel)
@@ -175,6 +189,14 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         if collectionView == collectionView1 {
             let movieDetailsView = MovieDetailsViewController()
             movieDetailsView.movieID = vm.nowPlaying[indexPath.row].id
+            self.navigationController?.pushViewController(movieDetailsView, animated: true)
+        } else if collectionView == collectionView2 {
+            let movieDetailsView = MovieDetailsViewController()
+            movieDetailsView.movieID = vm.upcoming[indexPath.row].id
+            self.navigationController?.pushViewController(movieDetailsView, animated: true)
+        } else {
+            let movieDetailsView = MovieDetailsViewController()
+            movieDetailsView.movieID = vm.topRated[indexPath.row].id
             self.navigationController?.pushViewController(movieDetailsView, animated: true)
         }
     }
