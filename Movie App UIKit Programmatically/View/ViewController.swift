@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         vm.getTopRatedMovie()
         bindVM()
         title = "Movie"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func bindVM() {
