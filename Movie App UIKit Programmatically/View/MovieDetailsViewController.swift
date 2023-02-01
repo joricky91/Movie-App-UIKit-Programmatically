@@ -171,6 +171,7 @@ extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "videoCell", for: indexPath)
         cell.textLabel?.text = vm.videos[indexPath.row].name
+        cell.accessoryView = UIImageView(image: UIImage(systemName: "play.rectangle.fill"))
         return cell
     }
     
