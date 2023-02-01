@@ -35,6 +35,7 @@ class MovieDetailsViewController: UIViewController {
                 self.movieBackdrop.downloadImage(from: URL(string: "https://image.tmdb.org/t/p/w1000_and_h563_face/\(self.vm.movieDetails?.backdrop ?? "")")!)
                 self.movieReleaseDate.text = self.vm.movieDetails?.releaseDate
                 self.movieRuntime.text = "Runtime: \(self.vm.movieDetails?.runtime ?? 0) minutes"
+                self.movieGenre.text = self.vm.arrangeMovieGenresInHorizontalText()
                 self.movieOverview.text = self.vm.movieDetails?.overview
                 self.tableView.reloadData()
             }
@@ -94,6 +95,7 @@ class MovieDetailsViewController: UIViewController {
     lazy var movieGenre: UILabel = {
         let label = UILabel()
         label.text = "Genre: Romance, Animation, Drama"
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -146,6 +148,7 @@ class MovieDetailsViewController: UIViewController {
 
             movieGenre.topAnchor.constraint(equalTo: movieRuntime.bottomAnchor),
             movieGenre.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            movieGenre.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 
             movieOverview.topAnchor.constraint(equalTo: movieGenre.bottomAnchor, constant: 10),
             movieOverview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
