@@ -170,5 +170,13 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
             return cell3
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == collectionView1 {
+            let movieDetailsView = MovieDetailsViewController()
+            movieDetailsView.movieID = vm.nowPlaying[indexPath.row].id
+            self.navigationController?.pushViewController(movieDetailsView, animated: true)
+        }
+    }
 }
 
