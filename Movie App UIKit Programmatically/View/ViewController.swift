@@ -114,8 +114,8 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
+            scrollView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),

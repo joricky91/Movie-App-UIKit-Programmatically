@@ -19,6 +19,7 @@
 		51F3DA9D2988E19300A72273 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3DA9C2988E19300A72273 /* UIImageViewExtension.swift */; };
 		51F3DAA12989455E00A72273 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3DAA02989455E00A72273 /* MovieDetailsViewController.swift */; };
 		51F3DAA3298A0F2C00A72273 /* Videos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3DAA2298A0F2C00A72273 /* Videos.swift */; };
+		51F3DAA5298A56FB00A72273 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F3DAA4298A56FB00A72273 /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		51F3DA9C2988E19300A72273 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		51F3DAA02989455E00A72273 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		51F3DAA2298A0F2C00A72273 /* Videos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Videos.swift; sourceTree = "<group>"; };
+		51F3DAA4298A56FB00A72273 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				51F3DA7E2987B25700A72273 /* ViewController.swift */,
 				51F3DA8E2988A96000A72273 /* CustomCell.swift */,
 				51F3DAA02989455E00A72273 /* MovieDetailsViewController.swift */,
+				51F3DAA4298A56FB00A72273 /* SearchViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51F3DA7F2987B25700A72273 /* ViewController.swift in Sources */,
+				51F3DAA5298A56FB00A72273 /* SearchViewController.swift in Sources */,
 				51F3DA7B2987B25700A72273 /* AppDelegate.swift in Sources */,
 				51F3DAA12989455E00A72273 /* MovieDetailsViewController.swift in Sources */,
 				51F3DAA3298A0F2C00A72273 /* Videos.swift in Sources */,
