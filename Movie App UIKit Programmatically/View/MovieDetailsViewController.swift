@@ -133,12 +133,6 @@ class MovieDetailsViewController: UIViewController {
         stackView.addArrangedSubview(movieOverview)
         stackView.addArrangedSubview(videosTitleText)
         stackView.addArrangedSubview(tableView)
-//        stackView.addSubview(movieReleaseDate)
-//        stackView.addSubview(movieRuntime)
-//        stackView.addSubview(movieGenre)
-//        stackView.addSubview(movieOverview)
-//        stackView.addSubview(videosTitleText)
-//        stackView.addSubview(tableView)
     }
     
     func setupConstraints() {
