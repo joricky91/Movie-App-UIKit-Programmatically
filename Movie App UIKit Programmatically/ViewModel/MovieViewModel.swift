@@ -14,7 +14,7 @@ class MovieViewModel: ObservableObject {
     @Published var topRated: [Movie] = []
     @Published var movieDetails: Movie?
     @Published var videos: [Videos] = []
-//    @Published var searchedMovies: [Movie] = []
+    @Published var searchedMovies: [Movie] = []
     
     private var network = NetworkManager()
     private var nowPlayingURL = "https://api.themoviedb.org/3/movie/now_playing?api_key=dd961bfa9a816030820499683fe54a36"
@@ -81,6 +81,19 @@ class MovieViewModel: ObservableObject {
             case.success(let video):
                 DispatchQueue.main.async {
                     self?.videos = video.results
+                }
+            }
+        }
+    }
+    
+    func getMovieDataFromSearch(searchText: String) {
+        network.fetchMovieDataFromAPI(url: "https://api.themoviedb.org/3/search/movie?api_key=dd961bfa9a816030820499683fe54a36&language=en-US&query=\(searchText)", expecting: MovieResponse.self) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let movie):
+                DispatchQueue.main.async {
+                    self?.searchedMovies = movie.results
                 }
             }
         }
