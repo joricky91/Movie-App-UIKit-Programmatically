@@ -95,6 +95,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource, UISe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movieDetailsView = MovieDetailsViewController()
         movieDetailsView.movieID = vm.searchedMovies[indexPath.row].id
+        movieDetailsView.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(movieDetailsView, animated: true)
     }
 }

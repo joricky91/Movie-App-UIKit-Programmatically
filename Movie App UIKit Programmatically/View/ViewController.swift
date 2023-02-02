@@ -189,14 +189,17 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         if collectionView == collectionView1 {
             let movieDetailsView = MovieDetailsViewController()
             movieDetailsView.movieID = vm.nowPlaying[indexPath.row].id
+            movieDetailsView.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(movieDetailsView, animated: true)
         } else if collectionView == collectionView2 {
             let movieDetailsView = MovieDetailsViewController()
             movieDetailsView.movieID = vm.upcoming[indexPath.row].id
+            movieDetailsView.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(movieDetailsView, animated: true)
         } else {
             let movieDetailsView = MovieDetailsViewController()
             movieDetailsView.movieID = vm.topRated[indexPath.row].id
+            movieDetailsView.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(movieDetailsView, animated: true)
         }
     }
