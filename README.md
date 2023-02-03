@@ -16,6 +16,7 @@ Things I learn in this project:
 - MVVM with Combine: Before when I use SwiftUI, to bind data we just have to add ```@Published``` tag to the property in the view model that we want to observe, and then declare the instance of view model using either ```StateObject```, ```ObservedObject```, or ```EnvironmentObject```. But UIKit doesn't have that capabilities, so I need to use Combine framework to bind the view model and view controller together.
 
 Special thanks to:
-- Fitzgerald Afful's article on Medium to bind MVVM data using Combine. Link to article: https://fitzafful.medium.com/data-binding-in-mvvm-on-ios-714eb15e3913
-- Swift Course video on Youtube about How to display JSON image on UITableviewcell in Swift. Link to video: https://youtu.be/KaSVqrKxb_E
+- Fitzgerald Afful's article on Medium about [Data Binding in MVVM on iOS](https://fitzafful.medium.com/data-binding-in-mvvm-on-ios-714eb15e3913).
+- Swift Course video on Youtube about [How to display JSON image on UITableviewcell in Swift](https://youtu.be/KaSVqrKxb_E).
 
+For the SwiftUI version of the Movie App, click [this link](https://github.com/joricky91/MovieApp) to view my repository.
