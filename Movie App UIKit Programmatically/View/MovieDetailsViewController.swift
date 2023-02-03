@@ -49,6 +49,16 @@ class MovieDetailsViewController: UIViewController {
         return scroll
     }()
     
+    lazy var stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.spacing = 16
+        stack.axis = .vertical
+        stack.isLayoutMarginsRelativeArrangement = true
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
+        return stack
+    }()
+    
     func reusableStackView(spacing: CGFloat) -> UIStackView {
         let stack = UIStackView()
         stack.spacing = spacing
@@ -57,9 +67,9 @@ class MovieDetailsViewController: UIViewController {
         return stack
     }
     
-    lazy var stackView = reusableStackView(spacing: 10)
     lazy var topStackView = reusableStackView(spacing: 5)
     lazy var middleStackView = reusableStackView(spacing: 0)
+    lazy var bottomStackView = reusableStackView(spacing: 0)
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -131,8 +141,9 @@ class MovieDetailsViewController: UIViewController {
         middleStackView.addArrangedSubview(movieRuntime)
         middleStackView.addArrangedSubview(movieGenre)
         stackView.addArrangedSubview(movieOverview)
-        stackView.addArrangedSubview(videosTitleText)
-        stackView.addArrangedSubview(tableView)
+        stackView.addArrangedSubview(bottomStackView)
+        bottomStackView.addArrangedSubview(videosTitleText)
+        bottomStackView.addArrangedSubview(tableView)
     }
     
     func getTableViewHeightMultiplier() -> CGFloat {
@@ -149,6 +160,7 @@ class MovieDetailsViewController: UIViewController {
         let safeArea = view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
+            scrollView.widthAnchor.constraint(equalTo: safeArea.widthAnchor),
             scrollView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             scrollView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
@@ -161,43 +173,11 @@ class MovieDetailsViewController: UIViewController {
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
-            topStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1),
-            topStackView.topAnchor.constraint(equalTo: stackView.topAnchor),
-            topStackView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            topStackView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            
             movieTitle.topAnchor.constraint(equalTo: topStackView.topAnchor),
-            movieTitle.leadingAnchor.constraint(equalTo: topStackView.leadingAnchor, constant: 16),
-            
-            movieBackdrop.topAnchor.constraint(equalTo: movieTitle.bottomAnchor, constant: 5),
-            movieBackdrop.trailingAnchor.constraint(equalTo: topStackView.trailingAnchor, constant: -16),
             movieBackdrop.heightAnchor.constraint(equalTo: topStackView.widthAnchor, multiplier: 0.57),
-            
-            middleStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1),
-            middleStackView.topAnchor.constraint(equalTo: movieBackdrop.bottomAnchor, constant: 16),
-            middleStackView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            middleStackView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-
             movieReleaseDate.topAnchor.constraint(equalTo: middleStackView.topAnchor),
-            movieReleaseDate.leadingAnchor.constraint(equalTo: middleStackView.leadingAnchor, constant: 16),
-
             movieRuntime.topAnchor.constraint(equalTo: movieReleaseDate.bottomAnchor),
-            movieRuntime.leadingAnchor.constraint(equalTo: middleStackView.leadingAnchor, constant: 16),
-
             movieGenre.topAnchor.constraint(equalTo: movieRuntime.bottomAnchor),
-            movieGenre.leadingAnchor.constraint(equalTo: middleStackView.leadingAnchor, constant: 16),
-            movieGenre.trailingAnchor.constraint(equalTo: middleStackView.trailingAnchor, constant: -16),
-
-            movieOverview.topAnchor.constraint(equalTo: middleStackView.bottomAnchor, constant: 16),
-            movieOverview.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 16),
-            movieOverview.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -16),
-
-            videosTitleText.topAnchor.constraint(equalTo: movieOverview.bottomAnchor, constant: 10),
-            videosTitleText.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 16),
-
-            tableView.topAnchor.constraint(equalTo: videosTitleText.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             tableView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: getTableViewHeightMultiplier()),
         ])
     }
