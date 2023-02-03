@@ -151,8 +151,8 @@ class MovieDetailsViewController: UIViewController {
         NSLayoutConstraint.activate([
             scrollView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             scrollView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            scrollView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
+            scrollView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             
             stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1),
@@ -167,35 +167,35 @@ class MovieDetailsViewController: UIViewController {
             topStackView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             
             movieTitle.topAnchor.constraint(equalTo: topStackView.topAnchor),
-//            movieTitle.leadingAnchor.constraint(equalTo: topStackView.leadingAnchor, constant: 16),
+            movieTitle.leadingAnchor.constraint(equalTo: topStackView.leadingAnchor, constant: 16),
             
-//            movieBackdrop.topAnchor.constraint(equalTo: movieTitle.bottomAnchor, constant: 5),
-//            movieBackdrop.trailingAnchor.constraint(equalTo: topStackView.trailingAnchor, constant: -16),
+            movieBackdrop.topAnchor.constraint(equalTo: movieTitle.bottomAnchor, constant: 5),
+            movieBackdrop.trailingAnchor.constraint(equalTo: topStackView.trailingAnchor, constant: -16),
             movieBackdrop.heightAnchor.constraint(equalTo: topStackView.widthAnchor, multiplier: 0.57),
             
             middleStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1),
-//            middleStackView.topAnchor.constraint(equalTo: movieBackdrop.bottomAnchor, constant: 16),
+            middleStackView.topAnchor.constraint(equalTo: movieBackdrop.bottomAnchor, constant: 16),
             middleStackView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             middleStackView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
 
             movieReleaseDate.topAnchor.constraint(equalTo: middleStackView.topAnchor),
-//            movieReleaseDate.leadingAnchor.constraint(equalTo: middleStackView.leadingAnchor, constant: 16),
+            movieReleaseDate.leadingAnchor.constraint(equalTo: middleStackView.leadingAnchor, constant: 16),
 
             movieRuntime.topAnchor.constraint(equalTo: movieReleaseDate.bottomAnchor),
-//            movieRuntime.leadingAnchor.constraint(equalTo: middleStackView.leadingAnchor, constant: 16),
+            movieRuntime.leadingAnchor.constraint(equalTo: middleStackView.leadingAnchor, constant: 16),
 
             movieGenre.topAnchor.constraint(equalTo: movieRuntime.bottomAnchor),
-//            movieGenre.leadingAnchor.constraint(equalTo: middleStackView.leadingAnchor, constant: 16),
-//            movieGenre.trailingAnchor.constraint(equalTo: middleStackView.trailingAnchor, constant: -16),
-//
-//            movieOverview.topAnchor.constraint(equalTo: middleStackView.bottomAnchor, constant: 16),
-//            movieOverview.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 16),
-//            movieOverview.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -16),
+            movieGenre.leadingAnchor.constraint(equalTo: middleStackView.leadingAnchor, constant: 16),
+            movieGenre.trailingAnchor.constraint(equalTo: middleStackView.trailingAnchor, constant: -16),
 
-//            videosTitleText.topAnchor.constraint(equalTo: movieOverview.bottomAnchor, constant: 10),
-//            videosTitleText.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 16),
+            movieOverview.topAnchor.constraint(equalTo: middleStackView.bottomAnchor, constant: 16),
+            movieOverview.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 16),
+            movieOverview.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -16),
 
-//            tableView.topAnchor.constraint(equalTo: videosTitleText.bottomAnchor),
+            videosTitleText.topAnchor.constraint(equalTo: movieOverview.bottomAnchor, constant: 10),
+            videosTitleText.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 16),
+
+            tableView.topAnchor.constraint(equalTo: videosTitleText.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             tableView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: getTableViewHeightMultiplier()),
