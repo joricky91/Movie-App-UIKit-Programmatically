@@ -141,6 +141,18 @@ class ViewController: UIViewController {
 
 
 extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    func reusableCollectionViewCellSetting(collectionView: UICollectionView, identifier: String, indexPath: IndexPath) -> CustomCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! CustomCell
+        let data: Movie
+        data = vm.nowPlaying[indexPath.row]
+        let stringURL = "https://image.tmdb.org/t/p/w1280/\(data.poster ?? "")"
+        if let url = URL(string: stringURL) {
+            cell.moviePoster.downloadImage(from: url)
+        }
+        cell.movieTitle.text = data.title
+        return cell
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectionView1 {
             return vm.nowPlaying.count
@@ -153,35 +165,11 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == collectionView1 {
-            let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCell
-            let data: Movie
-            data = vm.nowPlaying[indexPath.row]
-            let stringURL = "https://image.tmdb.org/t/p/w1280/\(data.poster ?? "")"
-            if let url = URL(string: stringURL) {
-                cell1.moviePoster.downloadImage(from: url)
-            }
-            cell1.movieTitle.text = data.title
-            return cell1
+            return reusableCollectionViewCellSetting(collectionView: collectionView, identifier: "cell", indexPath: indexPath)
         } else if collectionView == collectionView2 {
-            let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! CustomCell
-            let data: Movie
-            data = vm.upcoming[indexPath.row]
-            let stringURL = "https://image.tmdb.org/t/p/w1280/\(data.poster ?? "")"
-            if let url = URL(string: stringURL) {
-                cell2.moviePoster.downloadImage(from: url)
-            }
-            cell2.movieTitle.text = data.title
-            return cell2
+            return reusableCollectionViewCellSetting(collectionView: collectionView, identifier: "cell2", indexPath: indexPath)
         } else {
-            let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! CustomCell
-            let data: Movie
-            data = vm.topRated[indexPath.row]
-            let stringURL = "https://image.tmdb.org/t/p/w1280/\(data.poster ?? "")"
-            if let url = URL(string: stringURL) {
-                cell3.moviePoster.downloadImage(from: url)
-            }
-            cell3.movieTitle.text = data.title
-            return cell3
+            return reusableCollectionViewCellSetting(collectionView: collectionView, identifier: "cell3", indexPath: indexPath)
         }
     }
     
