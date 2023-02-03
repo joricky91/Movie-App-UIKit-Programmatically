@@ -153,6 +153,13 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         return cell
     }
     
+    func navigateToAnotherViewController(movieID: Int) {
+        let movieDetailsView = MovieDetailsViewController()
+        movieDetailsView.movieID = movieID
+        movieDetailsView.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(movieDetailsView, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectionView1 {
             return vm.nowPlaying.count
@@ -175,20 +182,11 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == collectionView1 {
-            let movieDetailsView = MovieDetailsViewController()
-            movieDetailsView.movieID = vm.nowPlaying[indexPath.row].id
-            movieDetailsView.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(movieDetailsView, animated: true)
+            navigateToAnotherViewController(movieID: vm.nowPlaying[indexPath.row].id)
         } else if collectionView == collectionView2 {
-            let movieDetailsView = MovieDetailsViewController()
-            movieDetailsView.movieID = vm.upcoming[indexPath.row].id
-            movieDetailsView.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(movieDetailsView, animated: true)
+            navigateToAnotherViewController(movieID: vm.upcoming[indexPath.row].id)
         } else {
-            let movieDetailsView = MovieDetailsViewController()
-            movieDetailsView.movieID = vm.topRated[indexPath.row].id
-            movieDetailsView.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(movieDetailsView, animated: true)
+            navigateToAnotherViewController(movieID: vm.topRated[indexPath.row].id)
         }
     }
 }
