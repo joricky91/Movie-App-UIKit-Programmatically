@@ -135,6 +135,16 @@ class MovieDetailsViewController: UIViewController {
         stackView.addArrangedSubview(tableView)
     }
     
+    func getTableViewHeightMultiplier() -> CGFloat {
+        if vm.videos.count < 4 {
+            return 0.3
+        } else if vm.videos.count > 4 && vm.videos.count < 8 {
+            return 0.4
+        } else {
+            return 0.5
+        }
+    }
+    
     func setupConstraints() {
         let safeArea = view.safeAreaLayoutGuide
         
@@ -188,7 +198,7 @@ class MovieDetailsViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: videosTitleText.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -16),
-            tableView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.5),
+            tableView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: getTableViewHeightMultiplier()),
         ])
     }
 }
