@@ -141,10 +141,10 @@ class ViewController: UIViewController {
 
 
 extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-    func reusableCollectionViewCellSetting(collectionView: UICollectionView, identifier: String, indexPath: IndexPath) -> CustomCell {
+    func reusableCollectionViewCellSetting(collectionView: UICollectionView, identifier: String, indexPath: IndexPath, movieData: [Movie]) -> CustomCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! CustomCell
         let data: Movie
-        data = vm.nowPlaying[indexPath.row]
+        data = movieData[indexPath.row]
         let stringURL = "https://image.tmdb.org/t/p/w1280/\(data.poster ?? "")"
         if let url = URL(string: stringURL) {
             cell.moviePoster.downloadImage(from: url)
@@ -172,11 +172,11 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == collectionView1 {
-            return reusableCollectionViewCellSetting(collectionView: collectionView, identifier: "cell", indexPath: indexPath)
+            return reusableCollectionViewCellSetting(collectionView: collectionView, identifier: "cell", indexPath: indexPath, movieData: vm.nowPlaying)
         } else if collectionView == collectionView2 {
-            return reusableCollectionViewCellSetting(collectionView: collectionView, identifier: "cell2", indexPath: indexPath)
+            return reusableCollectionViewCellSetting(collectionView: collectionView, identifier: "cell2", indexPath: indexPath, movieData: vm.upcoming)
         } else {
-            return reusableCollectionViewCellSetting(collectionView: collectionView, identifier: "cell3", indexPath: indexPath)
+            return reusableCollectionViewCellSetting(collectionView: collectionView, identifier: "cell3", indexPath: indexPath, movieData: vm.topRated)
         }
     }
     
