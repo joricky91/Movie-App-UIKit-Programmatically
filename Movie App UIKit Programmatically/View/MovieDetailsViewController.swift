@@ -11,7 +11,7 @@ import Combine
 class MovieDetailsViewController: UIViewController {
     var movieID: Int = 0
     
-    let vm = MovieViewModel()
+    private var vm = MovieViewModel()
     private var cancellables: Set<AnyCancellable> = []
 
     override func viewDidLoad() {

@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
         setupBindings()
     }
     
-    var vm = MovieViewModel()
+    private var vm = MovieViewModel()
     private var cancellables: Set<AnyCancellable> = []
     
     func setupBindings() {
